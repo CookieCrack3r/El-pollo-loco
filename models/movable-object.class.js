@@ -1,6 +1,5 @@
 class MovableObject {
     x = 0;
-    y = 200;
 
     height = 300;
     width = 150;
@@ -9,14 +8,30 @@ class MovableObject {
     imageCache = [];
     currentImage = 0;
     speed = 0.15;
+    speedY = 0;
+    acceleration = 2.5;
     otherDirection = false;
-    
-    loadImage(path){
+
+    applyGravity() {
+        setInterval(() => {
+            if (this.isGrounded()) {
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration;
+            }
+        }, 1000 / 15);
+
+    }
+
+    isGrounded() {
+        return this.y < 100;
+    }
+
+    loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
 
-    loadImages(arr){
+    loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();
             img.src = path;
@@ -24,7 +39,7 @@ class MovableObject {
         });
     }
 
-    playAnimation(images){
+    playAnimation(images) {
         let i = this.currentImage % this.IMAGES_WALKING.length;
         let path = images[i];
         this.img = this.imageCache[path];
@@ -36,7 +51,7 @@ class MovableObject {
     }
 
     moveLeft(speed) {
-        setInterval(()=>{this.x -=this.speed;}, 1000 / 60);
+        setInterval(() => { this.x -= this.speed; }, 1000 / 60);
     }
-   
+
 }
