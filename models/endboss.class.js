@@ -1,7 +1,7 @@
 class Endboss extends MovableObject {
     width = 500;
     height = 500;
-    y = 0;
+    y = -200;
     x = 700;
 
     IMAGES_WALKING = [
@@ -21,7 +21,7 @@ class Endboss extends MovableObject {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
         this.animate();
-        this.applyGravity();
+        this.applyGravity(50);
 
     }
     
