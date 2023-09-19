@@ -22,7 +22,6 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.animate();
         this.applyGravity(50);
-
     }
     
     animate(){
